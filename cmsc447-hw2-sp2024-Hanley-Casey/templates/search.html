@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Search for a Player</h1>
+
+    <form action = {{  url_for('result') }} method='post'>
+    <input type = 'number' name = 'id' placeholder="Players ID"><br>
+    <input type = 'submit' name = 'submit'>
+    </form>
+{% endblock %}

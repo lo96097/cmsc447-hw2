@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+<h1>{% block title %} Players Table {% endblock %}</h1>
+  
+{% block content %}
+
+
+   <table class="table table-hover table-bordered table-dark table-striped">
+    <thead>
+    	<tr>
+      		<th scope = "col" class = "col-sm-1">NAME</th>
+      		<th scope = "col" class ="col-sm-1">ID</th>
+      		<th scope = "col" class = "col-sm-1">SCORE</th>
+      		<th scope = "col" class = "col-sm-2">Options</th>
+    	</tr>
+    </thead>
+        <tbody>
+  	        {% for player in players %}
+    	    <tr>
+      		    <td>{{ player['name'] }}</td>
+      		    <td>{{ player['id'] }}</td>
+      		    <td>{{ player['score'] }}</td>
+      		    <td>
+      		       <form action="{{ url_for('update', i = player['i']) }}">
+                    <input type="submit" value ="Update" class = "btn btn-info" onclick="return confirm('Are you sure you want to update player ID#{{player['i']}}?');">
+                    </form>
+                    <br>
+      		       <form action="{{ url_for('delete', i = player['i']) }}" method="POST">
+      		       <input type="submit" value ="Delete" class = "btn btn-danger" onclick="return confirm('Are you sure?');">
+      		    </form>
+                </td>
+        </tr>
+      	{% endfor %} 
+      	
+        </tbody>
+    </table>
+
+   <div class = "row margin-left:5px">
+        <div class = "col-sm-4">
+            <form action="{{ url_for('addplayer') }}">
+            <input type="Submit" value ="Add Player" class = "btn btn-primary">
+            </form>
+        </div>
+        <div class = "col-sm-4">
+            <form action="{{ url_for('refresh') }}">
+            <input type="Submit" value ="Refresh Database" class = "btn btn-warning">
+            </form>
+        </div>
+        <div class = "col-sm-4">
+            <form action="{{ url_for('search') }}">
+                <input type="Submit" value ="Search by ID" class = "btn btn-info" >
+            </form>
+        </div>
+   </div>
+   {% endblock %}
+   
+   

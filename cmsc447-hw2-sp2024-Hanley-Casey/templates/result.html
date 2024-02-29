@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Player Search Result</h1>
+
+<table class="table table-hover table-bordered table-dark table-striped">
+    <thead>
+    	<tr>
+      		<th scope = "col">NAME</th>
+      		<th scope = "col">ID</th>
+      		<th scope = "col">SCORE</th>
+      	</tr>
+    </thead>
+    <tbody>
+  	        {% for player in players %}
+    	    <tr>
+      		    <td>{{ player['name'] }}</td>
+      		    <td>{{ player['id'] }}</td>
+      		    <td>{{ player['score'] }}</td>
+             </tr>
+    {%  endfor %}
+    </tbody>
+</table>
+
+{%  endblock %}
